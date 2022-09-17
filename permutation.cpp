@@ -5,16 +5,22 @@ using namespace std;
 
 int permutation(int n, int arr[])
 {
-    int q = 0;
+    int q = 0, i = 1;
 
-    for(int i = 0; i < n; i++)
+    while(i < n)
     {
         for(int j = 0; j < n; j++)
         {
-            if(arr[i] )
+            if(arr[j] == i)
+                break;
+            
+            if(j == n)
+                q++;
         }
+
+        i++;
     }
-    
+
     return q;
 }
 
