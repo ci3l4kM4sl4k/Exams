@@ -3,33 +3,36 @@
 #include <iostream>
 using namespace std;
 
+//////////////////////////////////function
 int permutation(int n, int arr[])
 {
     int a = 0, i = 1;
-    bool found = false;
+    bool found;
 
     while(i <= n)
     {
+        found = false;
+        
         for(int j = 0; j < n; j++)
         {
             if(arr[j] == i)
-                found = true;
+                found = true; //seeks for every number in array
         }
 
         if(found == false)
-            a++;
-
-        found = false;
+            a++; //counts every number it didnt found
+        
         i++;
     }
 
-    return a;
+    return a; //returns the amount of elements to change
 }
+//////////////////////////////////
 
 int main()
 {
-    int arr[10];
-    int n = 0, a = 0;
+    int arr[10]; //size of array, if you want more than 10 numbers then edit this number
+    int n = 0, a = 0; //n - exact size of array, a - amount of elements that need to be changed to get n-permutation
 
     cout << "What is the amount of numbers: ";
     cin >> n;
