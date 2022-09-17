@@ -5,29 +5,31 @@ using namespace std;
 
 int permutation(int n, int arr[])
 {
-    int q = 0, i = 1;
+    int a = 0, i = 1;
+    bool found = false;
 
-    while(i < n)
+    while(i <= n)
     {
         for(int j = 0; j < n; j++)
         {
             if(arr[j] == i)
-                break;
-            
-            if(j == n)
-                q++;
+                found = true;
         }
 
+        if(found == false)
+            a++;
+
+        found = false;
         i++;
     }
 
-    return q;
+    return a;
 }
 
 int main()
 {
     int arr[10];
-    int n = 0, q = 0;
+    int n = 0, a = 0;
 
     cout << "What is the amount of numbers: ";
     cin >> n;
@@ -38,9 +40,9 @@ int main()
         cin >> arr[i];
     }
 
-    q = permutation(n, arr);
+    a = permutation(n, arr);
 
-    cout << "Smallest amount of elements that must be replaced in order to obtain n-permutation is: " << q;
+    cout << "Smallest amount of elements that must be replaced in order to obtain n-permutation is: " << a;
 
     return 0;
 }
