@@ -1,3 +1,5 @@
+//Returns the number of numbers in the number.txt file whose first and last digits are the same.
+//It also returns the first one in the number.txt file.
 #include <iostream>
 #include <fstream>
 using namespace std;
