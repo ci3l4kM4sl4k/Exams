@@ -7,50 +7,49 @@ using namespace std;
 int main()
 {
     fstream file;
-    int arr[200];
-    int j = 0, n = 0;
+    string fileName = "przyklad.txt";
+    int n, amount = 0, pierwsza = 0;;
+    bool found = false;
 
-    file.open("przyklad.txt", ios::in);
+    file.open(fileName, ios::in);
         for(int i = 0; i < 200; i++)
         {
-            file >> arr[i];
+            file >> n;
+
+            if(found == false)
+                pierwsza = n;
+
+                cout << pierwsza << "==========\n";
+
+            int j = 0;
+            int arr[6];
+
+            while(n != 0)
+            {
+                arr[j] = n%10;
+                n /= 10;
+                j++;
+            }
+
+            for(int c = 0; c < j; c++)
+            {
+                cout << arr[c] << "\t";
+            }
+
+            if(arr[0] == arr[j-1])
+            {
+                amount++;
+
+                if(found == false)
+                    found = true;
+            }
+
+            cout << endl;
         }
     file.close();
 
-    for(int i = 0; i < 200; i++)
-    {
-        cout << arr[i] << "\n";
-    }
-
-    cout << "=========================================================\n";
-
-    int last = 0, amount = 0;
-
-    for(int i = 0; i < 200; i++)
-    {
-        j = 0;
-        while(arr[i] != 0)
-        {
-            n = arr[i] % 10;
-
-            if(j == 0)
-                last = n;
-
-            arr[i] /= 10;
-            j++;
-            cout << n << "\t";
-        }
-
-        if(last == n)
-        {
-            cout << "TUTAJ!!!\t"; 
-            amount++;
-        }
-
-        cout << last << endl;
-    }
-
     cout << "Amount: " << amount << endl;
-
+    cout << "First: " << pierwsza << endl;
+    
     return 0;
 }
