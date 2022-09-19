@@ -8,47 +8,47 @@ int main()
 {
     string fileName = "przyklad.txt";
     fstream file;
-    int n, number, maxDivisors=0, number2, maxDiffDivisors=0;
+    int number, maxDivisors=0, number1, maxDiffDivisors=0;
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
-            int tmp,  divisors = 0,  diffDivisors = 0;
+            int n, tmp,  divisors = 0,  diffDivisors = 0;
 
             file >> n;
-            cout << n << endl;
-
             tmp = n;
 
             int d = 2;
-            while(d < n)
+            while(tmp > 1)
             {
-                while(n % d == 0)
+                if(tmp % d == 0)
+                    diffDivisors++;
+
+                while(tmp % d == 0)
                 {                    
                     divisors++;
-                    n /= d;
-                    cout << d << "\t";
+                    tmp /= d;
                 }
-
                 d++;
-
-                if(n % d == 0)
-                    diffDivisors++;
             }
-            cout << n << endl << endl;
 
             if(divisors > maxDivisors)
-                number = tmp;
+            {
+                number = n;
+                maxDivisors = divisors;
+            }
 
             if(diffDivisors > maxDiffDivisors)
-                number2 = tmp;
-                
+            {
+                number1 = n;
+                maxDiffDivisors = diffDivisors;
+            }   
             
         }
     file.close();
 
-    cout << "\nNumber with highiest amount of prime divisors: " << number << " (" << maxDivisors << ")\n";
-    cout << "\nNumber with highiest amount of prime divisors: " << number2 << " (" << maxDiffDivisors << ")\n";
+    cout << "Number with highiest amount of prime divisors: " << number << " (" << maxDivisors << ")\n";
+    cout << "Number with highiest amount of different prime divisors: " << number1 << " (" << maxDiffDivisors << ")";
 
     return 0;
 }
