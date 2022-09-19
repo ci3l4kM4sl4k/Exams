@@ -1,4 +1,4 @@
-//Finds the number from 'number.txt' file with the most prime factors
+//Finds the number from 'numbers.txt' file with the most prime factors
 //and the number with the most distinct prime factors
 #include <iostream>
 #include <fstream>
@@ -6,20 +6,19 @@ using namespace std;
 
 int main()
 {
-    string fileName = "przyklad.txt";
+    string fileName = "numbers.txt"; //file name
     fstream file;
-    int number, maxDivisors=0, number1, maxDiffDivisors=0;
+    int number, maxDivisors=0, number1, maxDiffDivisors=0; //number with highest amount of prime divisors; amount of its divisors;number with highest amount of differend prime divisors; amount of its divisors
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
-            int n, tmp,  divisors = 0,  diffDivisors = 0;
+            int n, divisors = 0, diffDivisors = 0; //curently used number; variable for amount of its prime divisors, variable for amount of its different prime divisors, 
 
             file >> n;
-            tmp = n;
+            int tmp = n; //temporal variable for checks for amount of divisors
 
-            int d = 2;
-            while(tmp > 1)
+            for(int d = 2; tmp > 1; d++) //loop that checks divisors
             {
                 if(tmp % d == 0)
                     diffDivisors++;
@@ -29,21 +28,19 @@ int main()
                     divisors++;
                     tmp /= d;
                 }
-                d++;
             }
 
-            if(divisors > maxDivisors)
+            if(divisors > maxDivisors) //checks if current number has more prime divisors
             {
                 number = n;
                 maxDivisors = divisors;
             }
 
-            if(diffDivisors > maxDiffDivisors)
+            if(diffDivisors > maxDiffDivisors) //checks if current number has more different prime divisors
             {
                 number1 = n;
                 maxDiffDivisors = diffDivisors;
             }   
-            
         }
     file.close();
 
