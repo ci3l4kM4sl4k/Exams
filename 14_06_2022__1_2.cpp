@@ -1,27 +1,30 @@
+//Algorithm that returns the sum of squared digits of the given number
 #include <iostream>
 using namespace std;
 
-int SumaKwCyfr(int n)
+/////////////////////////function
+int SumSqDigits(int n)
 {
-    int sumaKwCyfr = 0;
+    int result = 0;
 
     while(n != 0)
     {
-        sumaKwCyfr += (n%10)*(n%10);
+        result += (n%10)*(n%10);
         n /= 10;
     }
 
-    return sumaKwCyfr;
+    return result;
 }
+//////////////////////////
 
 int main()
 {
     int n;
 
-    cout << "Podaj liczbe: ";
+    cout << "Enter number: ";
     cin >> n;
 
-    cout << "Suma kwadratow cyfr podanej liczby wynosi: " << SumaKwCyfr(n) << endl;
+    cout << "Sum of squared digits of the given number: " << SumSqDigits(n) << endl;
 
     return 0;
 }
