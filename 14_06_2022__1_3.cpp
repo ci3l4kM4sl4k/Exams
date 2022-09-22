@@ -1,9 +1,10 @@
-//
+//an algorithm that checks whether the loop counting the sum of the squares of the digits of
+//the given number and then its results will end with 1, or whether it will run infinitely
 #include <iostream>
 using namespace std;
 
 ///////////////////////////////function
-bool sumaKwLiczby(int n)
+bool isLoopInfinite(int n)
 {
     int m = n;
 
@@ -20,7 +21,7 @@ bool sumaKwLiczby(int n)
         }
         m = r;
     }
-    while(m != n);
+    while(m != n && m != 4);
 
     return false;
 }
@@ -30,13 +31,13 @@ int main()
 {
     int n;
 
-    cout << "Podaj liczbe: ";
+    cout << "Enter number: ";
     cin >> n;
 
-    if(sumaKwLiczby(n) == true)
-        cout << "Podana liczba jest liczba nudna" << endl;
+    if(isLoopInfinite(n) == true)
+        cout << "It will end up as 1" << endl;
     else
-        cout << "Podana liczba jest liczba ciekawa" << endl;
+        cout << "It will end up in infinite loop" << endl;
 
     return 0;
 }
