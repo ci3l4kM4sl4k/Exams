@@ -1,12 +1,17 @@
+//
 #include <iostream>
 using namespace std;
 
+///////////////////////////////function
 bool sumaKwLiczby(int n)
 {
     int m = n;
 
-    while(m != 1 && m != n)
+    do
     {
+        if(m == 1)
+            return true;
+
         int r = 0;
         while(m != 0)
         {
@@ -15,12 +20,11 @@ bool sumaKwLiczby(int n)
         }
         m = r;
     }
+    while(m != n);
 
-    if(m == 1)
-        return false;
-    else
-        return true;
+    return false;
 }
+////////////////////////////////////
 
 int main()
 {
@@ -30,9 +34,9 @@ int main()
     cin >> n;
 
     if(sumaKwLiczby(n) == true)
-        cout << "Podana liczba jest liczba ciekawa" << endl;
-    else
         cout << "Podana liczba jest liczba nudna" << endl;
+    else
+        cout << "Podana liczba jest liczba ciekawa" << endl;
 
     return 0;
 }
