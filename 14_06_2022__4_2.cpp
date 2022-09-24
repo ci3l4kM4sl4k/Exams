@@ -1,11 +1,12 @@
-//
+//Algorithm that for each number in the 'number.txt' file calculates the absolute value of the difference of that number and its reflection.
+//It reads the number for which the absolute value of the difference of this number and its reflection is the greatest.
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 int main()
 {
-    string fileName = "liczby.txt";
+    string fileName = "number.txt";
     fstream file;
     int n, reflection, result, number = 0, highestResult = 0;
 
