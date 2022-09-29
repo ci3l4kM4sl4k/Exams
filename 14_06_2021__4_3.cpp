@@ -4,52 +4,27 @@ using namespace std;
 
 int main()
 {
-    string fileName = "file.txt";
+    string fileName = "napisy.txt";
     fstream file;
-    char word[52];
-    bool palindrom;
-    string n;
+    string word;
+    int i = 0, j = 0;
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
-            for(int i = 1; i < 51; i++)
-            {
-                word[i] = file.get();
-            }
+            file >> word;
 
-            n = string(1,word[25]);
-
-            palindrom = false;
-
-            word[0] = word[50];
-
-            word[51] = word[1];
-
-            for(int i = 0; i < 52; i++)
-                cout << word[i];
-            cout << endl << endl;
-
-            for(int i = 1; i <= 26; i++)
-            {
-                if(i == 26)
-                    palindrom = true;
-
-                if(word[i] != word[51-i])
+            for (i = 1, j = word.length()-1; i < j; i++, j--)
+                if (word[i] != word[j])
                     break;
-            }
+            if (i >= j)
+                cout << word[(word.length()/2)];
 
-            for(int i = 0; i <= 24; i++)
-            {
-                if(i == 25)
-                    palindrom = true;
-
-                if(word[i] != word[50-i])
+            for (i = 0, j = word.length()-2; i < j; i++, j--)
+                if (word[i] != word[j])
                     break;
-            }
-
-            if(palindrom == true)
-                cout << "Tak";
+            if (i >= j)
+                cout << word[(word.length()/2)-1];
         }
     file.close();
 
