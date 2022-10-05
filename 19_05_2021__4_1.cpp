@@ -15,10 +15,10 @@ int main()
         {
             file >> word;
 
-            if(word == "DOPISZ") //if instruction says to add a letter to string
+            if(word == "ADD") //if instruction says to add a letter to string
                 length++;
 
-            if(word == "USUN") //if instruction says to delete a letter from string
+            if(word == "DELETE") //if instruction says to delete a letter from string
                 length--;
         }
     file.close();
