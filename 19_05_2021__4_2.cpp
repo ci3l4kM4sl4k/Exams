@@ -1,43 +1,45 @@
+//Finds the longest sequence of consecutive instructions of the same kind
+//As a result, it gives the type of instruction and its amount
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 int main()
 {
-    string fileName = "instrukcje.txt";
+    string fileName = "instructions.txt"; //name of file
     fstream file;
-    string word, last = "x", inMax;
-    int max = 0, now, i = 0;
+    string word, lastInstruction = "x", instruction; //imported string, previously used instruction, most commonly used instruction used one after another
+    int max = 0, currently, n = 0; //amount of most commonly used consecutive instruction, quantity of the instruction currently used, the number of the imported words
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
             file >> word;
 
-            if(i % 2 == 0)
+            if(n % 2 == 0) //needs only the first, and after that every secound word;
             {
-                if(word == last)
+                if(word == lastInstruction) //every time the same instruction is used consecutively
                 {
-                    now++;
+                    currently++;
 
-                    if(max < now)
+                    if(max < currently)
                     {
-                        inMax = word;
-                        max = now;
+                        instruction = word;
+                        max = currently;
                     }
                 }
-                else
+                else //when a new instruction is used
                 {
-                    last = word;
-                    now = 1;
+                    lastInstruction = word;
+                    currently = 1;
                 }
             }
 
-            i++;
+            n++;
         }
     file.close();
 
-    cout << "The kind of the instruction - " << inMax << ", its amount - " << max << ".";
+    cout << "The type of instruction - " << instruction << ", its amount - " << max << ".";
 
     return 0;
 }
