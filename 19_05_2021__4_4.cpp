@@ -1,56 +1,59 @@
+//Returns a string that will be generated after executing all instructions in the file 'instructions.txt'
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 int main()
 {
-    string fileName = "instrukcje.txt";
+    string fileName = "instructions.txt"; //name of file
     fstream file;
-    string instrukcja;
-    char letter, napis[1000];
-    int i = 0, n = 0;
+    string instruction; //variable for instruction
+    char letter, word[1000]; //letter that will be added or changed, word that will be created
+    int i = 0, n = 0; //variable to see if we took 2 items from file, variable for place of the letter in the word
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
-            if(i % 2 == 0)
+            if(i % 2 == 0) //if even then imports instruction
             {
-                file >> instrukcja;
+                file >> instruction;
             }
-            else
+            else //if odd then imports letter, after that it makes changes to "word"
             {
                 file >> letter;
 
-                if(instrukcja == "DOPISZ")
+                if(instruction == "ADD")
                 {
-                    napis[n] = letter;
+                    word[n] = letter; //adds letter to the word
                     n++;
                 }
 
-                if(instrukcja == "ZMIEN")
-                    napis[n-1] = letter;
+                if(instruction == "CHANGE")
+                    word[n-1] = letter; //changes the last letter to given new
 
-                if(instrukcja == "USUN")
-                    n--;
+                if(instruction == "DELETE")
+                    n -= int(letter)-48; //goes back as many times as it was written
 
-                if(instrukcja == "PRZESUN")
-                    for(int j = 0; j < n; j++)
-                        if(napis[j] == letter)
+                if(instruction == "MOVE")
+                {
+                    for(int j = 0; j < n; j++) //changes the first item from the left that is equal to given letter
+                        if(word[j] == letter)
                         {
-                            napis[j] = char(int(napis[j])+1);
+                            word[j] = char(int(word[j])+1);
 
-                            if(int(napis[j]) > 90)
-                                napis[j] = char(int(napis[j])-26);
+                            if(int(word[j]) > 90) //if it was 'Z' then it must be changed to 'A'
+                                word[j] = char(int(word[j])-26);
 
                             break;
                         }
+                }
             }
 
             i++;
         }
     file.close();
 
-    cout << napis;
+    cout << word; //reads the final word
 
     return 0;
 }
