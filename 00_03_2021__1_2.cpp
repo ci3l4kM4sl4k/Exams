@@ -17,38 +17,38 @@ int decToBin(int x)
 
 int turniej(int k, int x, int y)
 {
-    int z = 0;
+    int round = 0;
 
     if(x > y)
         while(x != 0)
         {
             x /= 10;
-            z++;
+            round++;
         }
     else
         while(y != 0)
         {
             y /= 10;
-            z++;
+            round++;
         }
 
-    return z;
+    return round;
 }
 
 int main()
 {
     int k, x, y;
 
-    cout << "Podaj ilosc rund: ";
+    cout << "Enter the amount of rounds: ";
     cin >> k;
 
-    cout << "Podaj numer druzyny1: ";
+    cout << "Enter team 1 number: ";
     cin >> x;
 
-    cout << "Podaj numer druzyny2: ";
+    cout << "Enter team 2 number: ";
     cin >> y;
 
-    cout << turniej(k, decToBin(x), decToBin(y));
+    cout << "The teams will face off in the round " << turniej(k, decToBin(x), decToBin(y));
 
     return 0;
 }
