@@ -5,7 +5,7 @@ using namespace std;
 void times(string fileName, string countryCode)
 {
     fstream file;
-    string line, countryCode1, countryCode2;
+    string line, newCountryCode, countryCode1, countryCode2, countryCode3;
     int count = 0;
 
     file.open(fileName, ios::in);
@@ -14,20 +14,25 @@ void times(string fileName, string countryCode)
             getline(file, line);
             countryCode1 = line[0];
             countryCode2 = line[1];
+            countryCode3 = line[2];
             
-            string newCountryCode = countryCode1 + countryCode2;
+            if(countryCode2 != " ")
+                newCountryCode = countryCode1 + countryCode2 + countryCode3;
+            else
+                newCountryCode = countryCode1 + countryCode2;
+
             if(countryCode == newCountryCode)
                 count ++;
         }
     file.close();
     
-    cout << countryCode << " " << count << endl;
+    cout << countryCode << "\t" << count << endl;
 }
 
 int import(string fileName, string array[])
 {
     fstream file;
-    string line, countryCode1, countryCode2;
+    string line, countryCode1, countryCode2, countryCode3;
     int i = 0;
 
     file.open(fileName, ios::in);
@@ -36,8 +41,13 @@ int import(string fileName, string array[])
             getline(file, line);
             countryCode1 = line[0];
             countryCode2 = line[1];
+            countryCode3 = line[2];
         
-            array[i] = countryCode1 + countryCode2;
+            if(countryCode2 != " ")
+                array[i] = countryCode1 + countryCode2 + countryCode3;
+            else
+                array[i] = countryCode1 + countryCode2;
+
             i++;
         }
     file.close();
