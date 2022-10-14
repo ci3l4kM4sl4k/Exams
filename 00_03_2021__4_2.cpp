@@ -7,47 +7,47 @@ using namespace std;
 
 int main()
 {
-    string fileName = "galerie.txt";
+    string fileName = "galleries.txt"; //name of file
     fstream file;
-    string code, name, nameWithMin, nameWithMax;
-    int a, b, sum, amount, sumMin=100000, sumMax=0;
+    string cityNameWithSmallest, cityNameWithLargest;
+    int smallestSurface=100000, largestSurface=0;
 
     file.open(fileName, ios::in);
         while(!file.eof())
         {
-            file >> code >> name;
-            sum = 0;
-            amount = 0;
+            string countryCode, cityName;
+            file >> countryCode >> cityName;
 
+            int a, b, surface = 0, amount = 0;
             for(int i = 0; i < 70; i++)
             {
                 file >> a >> b;
 
-                sum += (a*b);
+                surface += (a*b);
 
                 if(a*b != 0)
                     amount++;
             }
 
-            cout << name << " " << sum << " " << amount << endl;
+            cout << cityName << " " << surface << " " << amount << endl; //writes name of city with surface of its galleries and amount of premises
             
-            if(sum > sumMax)
+            if(surface > largestSurface) //checks whether current surface is new largest surface
             {
-                nameWithMax = name;
-                sumMax = sum;
+                cityNameWithLargest = cityName;
+                largestSurface = surface;
             }
 
-            if(sum < sumMin)
+            if(surface < smallestSurface) //checks whether current surface is new smallest surface
             {
-                nameWithMin = name;
-                sumMin = sum;
+                cityNameWithSmallest = cityName;
+                smallestSurface = surface;
             }
         }
     file.close();
 
     cout << endl;
-    cout << nameWithMax << " " << sumMax << endl;
-    cout << nameWithMin << " " << sumMin << endl;
+    cout << cityNameWithLargest << " " << largestSurface << endl;
+    cout << cityNameWithSmallest << " " << smallestSurface << endl;
 
     return 0;
 }
